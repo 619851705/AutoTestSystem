@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">	
+	
+	<bean id="userAction" class="com.dcits.action.user.UserAction" scope="prototype"></bean>
+	<bean id="interfaceInfoAction" class="com.dcits.action.message.InterfaceInfoAction" scope="prototype"></bean>
+	<bean id="interceptorAction" class="com.dcits.action.system.InterceptorAction" scope="prototype"></bean>
+	<bean id="messageAction" class="com.dcits.action.message.MessageAction" scope="prototype"></bean>
+	<bean id="messageSceneAction" class="com.dcits.action.message.MessageSceneAction" scope="prototype"></bean>
+	<bean id="testSetAction" class="com.dcits.action.message.TestSetAction" scope="prototype"></bean>
+	<bean id="autoTestAction" class="com.dcits.action.message.AutoTestAction" scope="prototype"></bean>
+	<bean id="reportAction" class="com.dcits.action.message.ReportAction" scope="prototype"></bean>
+	<bean id="mockAction" class="com.dcits.action.message.MockAction" scope="prototype"></bean>
+	<bean id="mockInfoAction" class="com.dcits.action.message.MockInfoAction" scope="prototype"></bean>
+	<bean id="webObjectAction" class="com.dcits.action.web.WebObjectAction" scope="prototype"></bean>
+	<bean id="webCaseAction" class="com.dcits.action.web.WebCaseAction" scope="prototype"></bean>
+	<bean id="webReportAction" class="com.dcits.action.web.WebReportAction" scope="prototype"></bean>
+	<bean id="webConfigAction" class="com.dcits.action.web.WebConfigAction" scope="prototype"></bean>
+	<bean id="webCaseSetAction" class="com.dcits.action.web.WebCaseSetAction" scope="prototype"></bean>
+	<bean id="webStepPublicAction" class="com.dcits.action.web.WebStepPublicAction" scope="prototype"></bean>
+	<bean id="webTestRmiAction" class="com.dcits.action.web.WebTestRmiAction" scope="prototype"></bean>
+	<bean id="roleAction" class="com.dcits.action.user.RoleAction" scope="prototype"></bean>
+	<bean id="dataDBAction" class="com.dcits.action.system.DataDBAction" scope="prototype"></bean>
+	<bean id="sceneValidateRuleAction" class="com.dcits.action.message.SceneValidateRuleAction" scope="prototype"></bean>
+	<bean id="userMailAction" class="com.dcits.action.user.UserMailAction" scope="prototype"></bean>
+	<bean id="autoTaskAction" class="com.dcits.action.system.AutoTaskAction" scope="prototype"></bean>
+	<bean id="globalSettingAction" class="com.dcits.action.system.GlobalSettingAction" scope="prototype"></bean>
+	<bean id="webScriptAction" class="com.dcits.action.web.WebScriptAction" scope="prototype"></bean>
+</beans>

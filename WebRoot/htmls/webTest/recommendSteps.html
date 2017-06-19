@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<LINK rel="Bookmark" href="/favicon.ico" >
+<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../libs/html5.js"></script>
+<script type="text/javascript" src="../../libs/respond.min.js"></script>
+<script type="text/javascript" src="../../libs/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../../libs/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="../../libs/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title></title>
+</head>
+<body>
+<div class="page-container">
+	<form class="form form-horizontal">						
+		<div class="row cl">
+			<div class="formControls col-xs-8 col-xs-offset-1 col-sm-7">
+			<span style="color:red;"><strong>请先选择一个或者多个测试步骤:</strong></span>
+			</div>
+		</div>
+		<div id="showStepsArea">
+		</div>	
+		<div class="row cl">
+			<div class="formControls col-xs-8 col-xs-offset-1 col-sm-7">
+				<a href="javascript:;" class="btn btn-primary size-S radius"  onclick="chooseStepsOk();" ><i class="Hui-iconfont">&#xe632;</i>确定选择</a>&nbsp;&nbsp;
+				<a href="javascript:;" class="btn btn-default size-S radius"  onclick="resetChoose();" id="resetBtn" style="display:none;">重选</a>
+			</div>
+		</div>
+	</form>
+	<br>
+		<form class="form form-horizontal" id="setCategoryInfo" style="display:none;">						
+		<div class="row cl">
+			<div class="formControls col-xs-8 col-xs-offset-1 col-sm-7">
+			<span style="color:red;"><strong>请补充你要创建的公共测试步骤详细信息:</strong></span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-offset-1 col-xs-3 col-sm-3">分类步骤名称:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" id="categoryName" name="categoryName" value="新建公共测试步骤分类1">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-offset-1 col-xs-3 col-sm-3">分类步骤描述:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="hidden" name="categoryDesc" id="categoryDesc" value=""/>
+				<a href="javascript:;" class="btn btn-primary size-S radius"  onclick="editCategoryDesc();" ><i class="Hui-iconfont">&#xe647;</i>编辑</a>	
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-offset-1 col-xs-3 col-sm-3">分类标签:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="hidden" name="categoryTag" id="categoryTag" value=""/>
+				<span id="tagSpan"></span><a href="javascript:;" class="btn btn-primary size-S radius"  onclick="addCategoryTag();" ><i class="Hui-iconfont">&#xe647;</i>添加</a>	
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="formControls col-xs-8 col-xs-offset-1 col-sm-7">
+			<a href="javascript:;" class="btn btn-primary size-S radius"  onclick="submitRecommend();" ><i class="Hui-iconfont">&#xe632;</i>推荐审核</a>	
+			<button onClick="parent.layer.close(parent.layer.getFrameIndex(window.name));" class="btn btn-default size-S radius" type="button">&nbsp;&nbsp;取消返回&nbsp;&nbsp;</button>
+			</div>
+		</div>
+		</form>
+	</div>
+<script type="text/javascript" src="../../libs/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="../../libs/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="../../libs/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="../../libs/h-ui.admin/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="../../js/dcits.js"></script>
+</body>
+</html>

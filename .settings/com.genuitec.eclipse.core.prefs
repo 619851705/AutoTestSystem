@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/libs,WebRoot/lib,WebRoot/static,WebRoot/A_reportHtml.html,WebRoot/reportHtml/model/end.xml,WebRoot/htmls/util/js/jsonparse.js,WebRoot/js,WebRoot/reportHtml/model/start.xml,WebRoot/htmls/user/chooseReceiveUser.html,WebRoot/mockJson
+validator.Unchecked=

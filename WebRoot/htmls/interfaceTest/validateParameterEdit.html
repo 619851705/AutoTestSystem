@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<LINK rel="Bookmark" href="/favicon.ico" >
+<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../libs/html5.js"></script>
+<script type="text/javascript" src="../../libs/respond.min.js"></script>
+<script type="text/javascript" src="../../libs/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../../libs/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="../../libs/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../libs/bootstrap-Switch/bootstrapSwitch.css" /> 
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+
+<title></title>
+</head>
+<body>
+<article class="page-container">
+	<form action="validate-edit" method="post" class="form form-horizontal" id="form-validate-edit">
+		<div class="row cl" style="display: none">
+			<label class="form-label col-xs-4 col-sm-3">ID：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<strong><span id="validateIdText"></span></strong>
+				<input type="hidden" class="input-text" id="validateId" name="validateId">
+			</div>
+		</div>	
+		<input type="hidden" name="fullValidateFlag" value="1"/>
+		<input type="hidden" name="status" value="0"/>
+		<input type="hidden" name="messageScene.messageSceneId" id="messageSceneId"/>	
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">是否为复杂节点路径：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div class="switch size-S" data-on-label="是" data-off-label="否">
+      				<input type="checkbox" value="0" name="complexFlag" id="complexFlag"/>
+    			</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3" id="parameterNameText"><span class="c-red">*</span>节点名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" id="parameterName" name="parameterName" placeholder="例如PHONE_NO">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>获取验证值方式：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="hidden" class="input-text" id="getValueMethod" name="getValueMethod">
+				<strong><span id="getValueMethodText"></span></strong>
+				<a href="javascript:;" class="btn btn-primary radius" onclick="chooseGetValueMethod();">选择</a>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3" id="parameterNameText"><span class="c-red">*</span>参数比对值：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" id="validateValue" name="validateValue" placeholder="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">备注：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="mark" id="mark" cols="" rows="" class="textarea radius" ></textarea>		
+			</div>
+		</div>						
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">&nbsp;&nbsp;<input class="btn btn-primary radius" type="button" onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));" value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<span id="tipMsg" style="color:red;"></span>
+			</div>
+		</div>
+	</form>
+</article>
+
+
+<script type="text/javascript" src="../../libs/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="../../libs/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="../../libs/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="../../libs/jquery.validation/1.14.0/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="../../libs/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="../../libs/jquery.validation/1.14.0/messages_zh.min.js"></script> 
+<script type="text/javascript" src="../../libs/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="../../libs/h-ui.admin/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="../../js/dcits.js"></script>
+<script type="text/javascript" src="../../libs/bootstrap-Switch/bootstrapSwitch.js"></script>
+</body>
+</html>

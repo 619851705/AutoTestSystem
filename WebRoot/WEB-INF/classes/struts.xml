@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+ 	<!-- 指定spring为对象工厂 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!--指定web应用的默认编码 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 关闭动态方法请求 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <!-- 开发模式 -->
+    <constant name="struts.devMode" value="false" />
+	<package name="dcitsManager" namespace="/" extends="json-default">   
+		
+		 <interceptors>
+			<interceptor-stack name="myPrepareInterceptorsStack">
+				<!-- 参数自动注入 -->
+    			<interceptor-ref name="paramsPrepareParamsStack">
+    				<param name="prepare.alwaysInvokePrepare">false</param>
+    			</interceptor-ref>
+    			<!-- 异常处理 -->
+    			<interceptor-ref name="defaultStack">  
+  					<param name="exception.logEnabled">true</param>  
+  					<param name="exception.logLevel">error</param>  
+				</interceptor-ref>
+    		</interceptor-stack>
+			<!-- 声明自定义拦截器判断用户是否登录 -->
+			<interceptor name="callMethodInterceptor"
+				class="com.dcits.interceptor.CallMethodInterceptor"></interceptor>
+		</interceptors>	
+		
+		<default-interceptor-ref name="myPrepareInterceptorsStack"/>
+		
+		
+		
+		<!-- 全局处理结果,跳转到处理异常或者错误情况下的action -->
+		<global-results>
+			<!-- 用户没有登录时 -->
+			<result name="usernotlogin" type="chain">
+				noLoginJSON
+			</result>
+			<!-- 出现系统错误-代码问题 -->
+			<result name="error" type="chain">
+				errorJSON
+			</result>
+			<!-- 当前操作接口被禁止调用 -->
+			<result name="opisdisable" type="chain">
+				opDisableJSON
+			</result>
+			<!-- 当前用户没有权限 -->
+			<result name="usernotpower" type="chain">
+				noPowerJSON
+			</result>
+		</global-results>
+		
+		<!-- 全局异常处理结果 -->
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+		<!-- 该action主要返回各种报错的json格式信息 -->
+		<action name="*JSON" class="interceptorAction" method="{1}">
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!--用户登录的action -->			
+		<action name="user-*" class="userAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 角色权限管理 -->
+		<action name="role-*" class="roleAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 用户邮件 -->
+		<action name="mail-*" class="userMailAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 定时任务-->
+		<action name="task-*" class="autoTaskAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 全局设置-->
+		<action name="global-*" class="globalSettingAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 接口管理 -->
+		<action name="interface-*" class="interfaceInfoAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 接口报文管理 -->
+		<action name="message-*" class="messageAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 场景管理 -->
+		<action name="messageScene-*" class="messageSceneAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 验证规则 -->
+		<action name="validate-*" class="sceneValidateRuleAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 测试集管理 -->
+		<action name="set-*" class="testSetAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 测试执行 -->
+		<action name="test-*" class="autoTestAction" method="{1}">
+			<!-- <interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref> -->
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+	
+	
+		<!-- 测试报告 -->
+		<action name="report-*" class="reportAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		
+		<!-- 接口mock -->
+		<action name="mock-*" class="mockInfoAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- Web自动化测试对象 -->
+		<action name="webObject-*" class="webObjectAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- Web自动化测试用例 -->
+		<action name="webCase-*" class="webCaseAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- Web自动化测试报告 -->
+		<action name="webReport-*" class="webReportAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- Web自动化测试配置 -->
+		<action name="webConfig-*" class="webConfigAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- Web自动化测试用例集 -->
+		<action name="caseSet-*" class="webCaseSetAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- Web自动化公共测试步骤 -->
+		<action name="publicStep-*" class="webStepPublicAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- Web自动化测试执行 -->
+		<action name="webTest-*" class="webTestRmiAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- Web自动化ruby脚本相关-->
+		<action name="webScript-*" class="webScriptAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+		<!-- 查询数据库信息管理 -->
+		<action name="db-*" class="dataDBAction" method="{1}">
+			<interceptor-ref name="callMethodInterceptor"></interceptor-ref>
+			<interceptor-ref name="myPrepareInterceptorsStack"></interceptor-ref>
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		
+	</package>
+	
+	
+	<!-- 文件上传 -->
+	<package name="uploadFile" namespace="/file" extends="json-default"> 
+		<action name="upload" class="webTestRmiAction" method="recFile">
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 调用mock接口 -->
+	<package name="interfaceMock" namespace="/mock" extends="json-default"> 
+		<action name="*" class="mockAction">
+			<result type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+	</package>
+</struts>
